@@ -34,9 +34,11 @@ ADD supervisord-mysqld.conf /etc/supervisor/conf.d/supervisord-mysqld.conf
 RUN rm -rf /var/lib/mysql/*
 
 # Add MySQL utils
+ADD mydb-backup.sql /opt/mydb-backup.sql
 ADD create_mysql_admin_user.sh /create_mysql_admin_user.sh
 ADD mysql-setup.sh /mysql-setup.sh
 RUN chmod 755 /*.sh
+RUN chmod 777 /*.sql
 
 WORKDIR $TOMCAT_HOME
 
