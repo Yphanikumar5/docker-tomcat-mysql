@@ -2,17 +2,18 @@ FROM openjdk:7-jdk
 MAINTAINER Manuel de la Peña <manuel.delapenya@liferay.com>
 
 ENV DEBIAN_FRONTEND noninteractive
-ENV TOMCAT_MAJOR_VERSION=7
-ENV TOMCAT_VERSION=7.0.77
+ENV TOMCAT_MAJOR_VERSION=9
+ENV TOMCAT_VERSION=9.0.19
 ENV TOMCAT_HOME=/opt/apache-tomcat-$TOMCAT_VERSION
 
-# Prepare the installation of mysql-server and tomcat 7
+# Prepare the installation of mysql-server and tomcat 9
 RUN apt-get update && apt-get install -y lsb-release && \
   wget https://dev.mysql.com/get/mysql-apt-config_0.8.4-1_all.deb && \
   dpkg -i mysql-apt-config_0.8.4-1_all.deb && rm -f mysql-apt-config_0.8.4-1_all.deb && \
   mkdir -p $TOMCAT_HOME && cd /opt && \
-  wget http://mirrors.standaloneinstaller.com/apache/tomcat/tomcat-$TOMCAT_MAJOR_VERSION/v$TOMCAT_VERSION/bin/apache-tomcat-$TOMCAT_VERSION.tar.gz && \
+  wget http://mirrors.estointernet.in/apache/tomcat/tomcat-$TOMCAT_MAJOR_VERSION/v$TOMCAT_VERSION/bin/apache-tomcat-$TOMCAT_VERSION.tar.gz && \
   tar -xvf apache-tomcat-$TOMCAT_VERSION.tar.gz && rm -f apache-tomcat-$TOMCAT_VERSION.tar.gz
+ #wget http://mirrors.estointernet.in/apache/tomcat/tomcat-9/v9.0.19/bin/apache-tomcat-9.0.19.tar.gz
 
 # Install packages
 RUN apt-get update && \
